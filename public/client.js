@@ -1,6 +1,5 @@
 var socket = io();
 
-
 $('form').submit(function (e){
   e.preventDefault();
 
@@ -13,6 +12,11 @@ $('form').submit(function (e){
     socket.emit('chat-message', mess);
 
     $('#m').val('');
-
+    $('#messages').append($('<li>' + mess.text + '</li>'));
     $('#chat input').focus();
+
 });
+  
+socket.on('chat-message', function (message){
+    $('#messages').append($('<li>' + message + '</li>'));
+  });

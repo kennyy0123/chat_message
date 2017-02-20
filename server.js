@@ -19,9 +19,8 @@ io.on('connection', function(socket){
   });
 
   socket.on('chat-message', function (message){
-    io.emit('chat-message', message.text);
+    socket.broadcast.emit('chat-message', message.text);
     console.log(message.text);
-    $('#messages').append($('<li>').text(message.text));
   });
 
 });
